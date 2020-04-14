@@ -1,22 +1,21 @@
 # Site settings 配置站点
-title: 'your awesome title'
-description: 'your web description'
-keywords: 'your web keywords, another keywords'
-url: 'https://abc.github.io' # your host
+title: '欢迎光临我的qq空间'
+description: '喝可乐，吃炸鸡，顺便敲敲代码~'
+keywords: 'pace and love'
+url: 'https://jessieyyy.github.io' # your host
 
 # nav 中文字符空格：&emsp;
 nav: # 最佳体验 六个标签 且最好每个标签不超过4中文字
   首页: '/'
-  标签: '/tags.html'
-  时间线: '/timeline.html'
+  日常: '/tags.html'
+  项目: '/timeline.html'
   关于博主: '/about.html'
-  友情链接: '/friendLink.html'
 
 # 博主
 author: true
-name: 'your awesome name'
+name: 'iceofcream'
 NickName: 'your awesome nickname'
-webtitle: 'your awesome webtitle'
+webtitle: '未来可期'
 bio: 'your awesome bio'
 about: true
 aboutyou: 'your introduction'
@@ -70,7 +69,7 @@ livere: true
 livere_uid: 'MTAyMC8zNDI2OS8xMDgwNg==' # MTAyMC8zNDI2OS8xMDgwNg==
 # Gitment评论 OAuth Application
 Gitment: false
-Gitment_owner: ''  # github用户名
+Gitment_owner: 'jessieyyy'  # github用户名
 Gitment_repo: ''  # github博客存放的仓库名
 client_id: ''  # 注册 OAuth Application 后获得的 client_id
 client_secret: ''  # 注册 OAuth Application 后获得的 client_secret
