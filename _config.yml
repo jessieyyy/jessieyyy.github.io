@@ -14,11 +14,11 @@ nav: # 最佳体验 六个标签 且最好每个标签不超过4中文字
 # 博主
 author: true
 name: 'iceofcream'
-NickName: 'your awesome nickname'
+NickName: '阿加西'
 webtitle: '· Future is promising ·'
-bio: 'your awesome bio'
+bio: '佛系冲浪，简单快乐'
 about: true
-aboutyou: 'your introduction'
+aboutyou: '关于我：一名前端打字员'
 portraits: '/assets/profile.jpeg' # your portraits image file path
 
 # SNS
@@ -30,14 +30,14 @@ SNS-icon: #['Facebook', 'weibo', 'qq', 'github', 'Dribbble', 'Twitter', 'instagr
   github: ''
   Codepen: ''
   weibo: ''
-  instagram: ''
-  Twitter: ''
-  Dribbble: ''
-  Facebook: ''
-  Google: ''
-  zhihu: ''
-  juejin: ''
-  twitch: ''
+  # instagram: ''
+  # Twitter: ''
+  # Dribbble: ''
+  # Facebook: ''
+  # Google: ''
+  # zhihu: ''
+  # juejin: ''
+  # twitch: ''
 
 # 分页
 paginate: 2
