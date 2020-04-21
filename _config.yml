@@ -7,8 +7,8 @@ url: 'https://jessieyyy.github.io' # your host
 # nav 中文字符空格：&emsp;
 nav: # 最佳体验 六个标签 且最好每个标签不超过4中文字
   首页: '/'
-  日常: '/tags.html'
-  项目: '/timeline.html'
+  日常记录: '/tags.html'
+  项目记录: '/timeline.html'
   关于博主: '/about.html'
 
 # 博主
@@ -19,7 +19,7 @@ webtitle: '· Future is promising ·'
 bio: '佛系冲浪选手 · 简单快乐至上 · pace and love'
 about: true
 aboutyou: '关于我：喝可乐，吃炸鸡，顺便敲敲代码~'
-portraits: '/assets/myhead.jpg' # your portraits image file path
+portraits: './assets/myhead.jpg' # your portraits image file path
 
 # SNS
 SNS: true
