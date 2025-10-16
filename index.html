@@ -1,18 +1,708 @@
----
-layout: default
-title: jessie's space
-page-title: your awesome page-title.
-home-title: your awesome home-title.
-description: description
----
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目展示列表</title>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- 配置Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#10B981',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .card-flip {
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .card-flip-active {
+        transform: rotateY(180deg);
+      }
+      .card-front, .card-back {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      .card-back {
+        transform: rotateY(180deg);
+      }
+      .carousel-item {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .carousel-item.active {
+        opacity: 1;
+        position: relative;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+  <!-- 页面标题 -->
+  <header class="bg-dark text-white py-10 px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto">
+      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center">
+        项目展示 <span class="text-primary">列表</span>
+      </h1>
+      <p class="text-gray-300 text-center mt-3 max-w-2xl mx-auto">
+        鼠标移至卡片查看详情，点击卡片打开轮播展示
+      </p>
+    </div>
+  </header>
 
-{% include header.html %}
-{% include boot.html %}
-<main>
-    {% include title.html %}
-    <ul class="post-list">
-      {% include posts_paginator.html %}
-    </ul>
-</main>
-{% include pageNav.html %}
-{% include footer.html %}
+  <!-- 项目列表 - Grid布局 -->
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+      <!-- 项目1 -->
+      <div class="project-card group cursor-pointer" data-id="1">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <!-- 卡片正面 -->
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-primary/20 overflow-hidden">
+              <img src="https://picsum.photos/seed/project1/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">电子商务平台</h3>
+              <p class="text-gray-600 text-sm flex-grow">一个功能完善的在线购物系统，支持多种支付方式和物流追踪。</p>
+              <div class="mt-4 flex items-center text-primary">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <!-- 卡片背面 -->
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">电子商务平台</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-primary mr-2"></i>
+                <span>完成于 2023年6月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-primary mr-2"></i>
+                <span>5人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-primary mr-2"></i>
+                <span>React, Node.js, MongoDB</span>
+              </div>
+            </div>
+            <div class="mt-4 text-primary flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目2 -->
+      <div class="project-card group cursor-pointer" data-id="2">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-secondary/20 overflow-hidden">
+              <img src="https://picsum.photos/seed/project2/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">数据分析仪表板</h3>
+              <p class="text-gray-600 text-sm flex-grow">实时数据监控与分析平台，提供直观的数据可视化和预测功能。</p>
+              <div class="mt-4 flex items-center text-secondary">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">数据分析仪表板</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-secondary mr-2"></i>
+                <span>完成于 2023年3月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-secondary mr-2"></i>
+                <span>3人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-secondary mr-2"></i>
+                <span>Vue.js, D3.js, Python</span>
+              </div>
+            </div>
+            <div class="mt-4 text-secondary flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目3 -->
+      <div class="project-card group cursor-pointer" data-id="3">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-purple-100 overflow-hidden">
+              <img src="https://picsum.photos/seed/project3/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">社交媒体应用</h3>
+              <p class="text-gray-600 text-sm flex-grow">具有实时聊天、内容分享和用户互动功能的现代社交平台。</p>
+              <div class="mt-4 flex items-center text-purple-600">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">社交媒体应用</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-purple-500 mr-2"></i>
+                <span>完成于 2022年11月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-purple-500 mr-2"></i>
+                <span>7人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-purple-500 mr-2"></i>
+                <span>Flutter, Firebase, GraphQL</span>
+              </div>
+            </div>
+            <div class="mt-4 text-purple-500 flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目4 -->
+      <div class="project-card group cursor-pointer" data-id="4">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-amber-100 overflow-hidden">
+              <img src="https://picsum.photos/seed/project4/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">智能管理系统</h3>
+              <p class="text-gray-600 text-sm flex-grow">企业资源规划与管理解决方案，提升运营效率与决策能力。</p>
+              <div class="mt-4 flex items-center text-amber-600">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">智能管理系统</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-amber-500 mr-2"></i>
+                <span>完成于 2023年1月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-amber-500 mr-2"></i>
+                <span>6人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-amber-500 mr-2"></i>
+                <span>Angular, .NET, SQL Server</span>
+              </div>
+            </div>
+            <div class="mt-4 text-amber-500 flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目5 -->
+      <div class="project-card group cursor-pointer" data-id="5">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-red-100 overflow-hidden">
+              <img src="https://picsum.photos/seed/project5/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">健康追踪应用</h3>
+              <p class="text-gray-600 text-sm flex-grow">个人健康数据记录与分析工具，支持运动、饮食和睡眠监测。</p>
+              <div class="mt-4 flex items-center text-red-600">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">健康追踪应用</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-red-500 mr-2"></i>
+                <span>完成于 2022年9月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-red-500 mr-2"></i>
+                <span>4人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-red-500 mr-2"></i>
+                <span>React Native, AWS, PostgreSQL</span>
+              </div>
+            </div>
+            <div class="mt-4 text-red-500 flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目6 -->
+      <div class="project-card group cursor-pointer" data-id="6">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-teal-100 overflow-hidden">
+              <img src="https://picsum.photos/seed/project6/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">教育学习平台</h3>
+              <p class="text-gray-600 text-sm flex-grow">在线课程与学习管理系统，支持视频教学和互动练习。</p>
+              <div class="mt-4 flex items-center text-teal-600">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">教育学习平台</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-teal-500 mr-2"></i>
+                <span>完成于 2023年5月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-teal-500 mr-2"></i>
+                <span>8人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-teal-500 mr-2"></i>
+                <span>Laravel, Vue.js, MySQL</span>
+              </div>
+            </div>
+            <div class="mt-4 text-teal-500 flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目7 -->
+      <div class="project-card group cursor-pointer" data-id="7">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-indigo-100 overflow-hidden">
+              <img src="https://picsum.photos/seed/project7/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">旅行规划工具</h3>
+              <p class="text-gray-600 text-sm flex-grow">智能行程规划与管理应用，整合机票、酒店和景点预订服务。</p>
+              <div class="mt-4 flex items-center text-indigo-600">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">旅行规划工具</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-indigo-500 mr-2"></i>
+                <span>完成于 2022年8月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-indigo-500 mr-2"></i>
+                <span>5人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-indigo-500 mr-2"></i>
+                <span>Next.js, TypeScript, MongoDB</span>
+              </div>
+            </div>
+            <div class="mt-4 text-indigo-500 flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目8 -->
+      <div class="project-card group cursor-pointer" data-id="8">
+        <div class="card-flip relative h-80 rounded-xl overflow-hidden shadow-lg">
+          <div class="card-front absolute inset-0 bg-white flex flex-col">
+            <div class="h-48 bg-pink-100 overflow-hidden">
+              <img src="https://picsum.photos/seed/project8/600/400" alt="项目图片" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">创意设计社区</h3>
+              <p class="text-gray-600 text-sm flex-grow">设计师作品展示与交流平台，支持作品分享和在线协作。</p>
+              <div class="mt-4 flex items-center text-pink-600">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back absolute inset-0 bg-dark text-white flex flex-col p-5">
+            <h3 class="text-xl font-bold mb-3">创意设计社区</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-pink-500 mr-2"></i>
+                <span>完成于 2023年2月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-pink-500 mr-2"></i>
+                <span>6人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-pink-500 mr-2"></i>
+                <span>Django, React, Redis</span>
+              </div>
+            </div>
+            <div class="mt-4 text-pink-500 flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 弹窗 - 包含轮播 -->
+  <div id="projectModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative transform transition-transform duration-300 scale-95">
+      <!-- 关闭按钮 -->
+      <button id="closeModal" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/20 text-white flex items-center justify-center hover:bg-black/40 transition-colors z-10">
+        <i class="fa fa-times"></i>
+      </button>
+      
+      <!-- 轮播容器 -->
+      <div class="carousel-container relative h-full">
+        <div class="carousel-wrapper relative h-[60vh] sm:h-[70vh]">
+          <!-- 轮播项会通过JS动态生成 -->
+        </div>
+        
+        <!-- 轮播控制按钮 -->
+        <button class="carousel-control prev absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 text-white flex items-center justify-center hover:bg-black/50 transition-colors z-10">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <button class="carousel-control next absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 text-white flex items-center justify-center hover:bg-black/50 transition-colors z-10">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+        
+        <!-- 轮播指示器 -->
+        <div class="carousel-indicators flex justify-center gap-2 py-4">
+          <!-- 指示器会通过JS动态生成 -->
+        </div>
+      </div>
+      
+      <!-- 项目详情 -->
+      <div class="p-6 border-t">
+        <h2 id="modalTitle" class="text-2xl font-bold text-dark mb-2"></h2>
+        <p id="modalDescription" class="text-gray-600"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 项目数据
+    const projects = [
+      {
+        id: 1,
+        title: "电子商务平台",
+        description: "一个功能完善的在线购物系统，支持多种支付方式和物流追踪。系统采用微服务架构，确保高可用性和可扩展性。包含用户管理、商品展示、购物车、订单处理、支付集成等核心功能。",
+        images: [
+          "https://picsum.photos/seed/project1/1200/800",
+          "https://picsum.photos/seed/project1a/1200/800",
+          "https://picsum.photos/seed/project1b/1200/800",
+          "https://picsum.photos/seed/project1c/1200/800"
+        ]
+      },
+      {
+        id: 2,
+        title: "数据分析仪表板",
+        description: "实时数据监控与分析平台，提供直观的数据可视化和预测功能。支持多维度数据筛选和自定义报表生成，帮助企业快速掌握业务动态和市场趋势，做出数据驱动的决策。",
+        images: [
+          "https://picsum.photos/seed/project2/1200/800",
+          "https://picsum.photos/seed/project2a/1200/800",
+          "https://picsum.photos/seed/project2b/1200/800"
+        ]
+      },
+      {
+        id: 3,
+        title: "社交媒体应用",
+        description: "具有实时聊天、内容分享和用户互动功能的现代社交平台。支持图文、视频等多种内容形式，包含智能推荐算法和隐私保护机制，为用户提供安全、有趣的社交体验。",
+        images: [
+          "https://picsum.photos/seed/project3/1200/800",
+          "https://picsum.photos/seed/project3a/1200/800",
+          "https://picsum.photos/seed/project3b/1200/800",
+          "https://picsum.photos/seed/project3c/1200/800"
+        ]
+      },
+      {
+        id: 4,
+        title: "智能管理系统",
+        description: "企业资源规划与管理解决方案，提升运营效率与决策能力。集成了人力资源、财务管理、供应链管理等模块，通过自动化流程和数据分析，帮助企业降低成本、提高效率。",
+        images: [
+          "https://picsum.photos/seed/project4/1200/800",
+          "https://picsum.photos/seed/project4a/1200/800",
+          "https://picsum.photos/seed/project4b/1200/800"
+        ]
+      },
+      {
+        id: 5,
+        title: "健康追踪应用",
+        description: "个人健康数据记录与分析工具，支持运动、饮食和睡眠监测。通过智能算法为用户提供个性化健康建议，集成可穿戴设备数据同步功能，帮助用户养成健康生活习惯。",
+        images: [
+          "https://picsum.photos/seed/project5/1200/800",
+          "https://picsum.photos/seed/project5a/1200/800",
+          "https://picsum.photos/seed/project5b/1200/800"
+        ]
+      },
+      {
+        id: 6,
+        title: "教育学习平台",
+        description: "在线课程与学习管理系统，支持视频教学和互动练习。包含课程管理、学习进度跟踪、在线考试等功能，采用自适应学习算法，为不同水平的学习者提供个性化学习路径。",
+        images: [
+          "https://picsum.photos/seed/project6/1200/800",
+          "https://picsum.photos/seed/project6a/1200/800",
+          "https://picsum.photos/seed/project6b/1200/800",
+          "https://picsum.photos/seed/project6c/1200/800"
+        ]
+      },
+      {
+        id: 7,
+        title: "旅行规划工具",
+        description: "智能行程规划与管理应用，整合机票、酒店和景点预订服务。基于用户偏好和预算推荐最佳旅行方案，提供实时天气和交通信息，让旅行计划变得简单高效。",
+        images: [
+          "https://picsum.photos/seed/project7/1200/800",
+          "https://picsum.photos/seed/project7a/1200/800",
+          "https://picsum.photos/seed/project7b/1200/800"
+        ]
+      },
+      {
+        id: 8,
+        title: "创意设计社区",
+        description: "设计师作品展示与交流平台，支持作品分享和在线协作。包含作品点赞、评论、收藏功能，提供设计资源下载和灵感推荐，连接全球创意人才，促进设计行业发展。",
+        images: [
+          "https://picsum.photos/seed/project8/1200/800",
+          "https://picsum.photos/seed/project8a/1200/800",
+          "https://picsum.photos/seed/project8b/1200/800",
+          "https://picsum.photos/seed/project8c/1200/800"
+        ]
+      }
+    ];
+
+    // DOM元素
+    const projectCards = document.querySelectorAll('.project-card');
+    const modal = document.getElementById('projectModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    const carouselIndicators = document.querySelector('.carousel-indicators');
+    const prevControl = document.querySelector('.carousel-control.prev');
+    const nextControl = document.querySelector('.carousel-control.next');
+    
+    let currentProject = null;
+    let currentSlide = 0;
+    let carouselInterval = null;
+
+    // 鼠标移入/移出事件 - 翻转效果
+    projectCards.forEach(card => {
+      // 鼠标移入时翻转卡片
+      card.addEventListener('mouseenter', function() {
+        const cardFlip = this.querySelector('.card-flip');
+        cardFlip.classList.add('card-flip-active');
+      });
+      
+      // 鼠标移出时翻回卡片
+      card.addEventListener('mouseleave', function() {
+        const cardFlip = this.querySelector('.card-flip');
+        cardFlip.classList.remove('card-flip-active');
+      });
+      
+      // 点击卡片打开弹窗
+      card.addEventListener('click', function() {
+        const projectId = parseInt(this.dataset.id);
+        openModal(projectId);
+      });
+    });
+
+    // 打开弹窗
+    function openModal(projectId) {
+      currentProject = projects.find(p => p.id === projectId);
+      if (!currentProject) return;
+      
+      // 更新弹窗内容
+      modalTitle.textContent = currentProject.title;
+      modalDescription.textContent = currentProject.description;
+      
+      // 生成轮播内容
+      generateCarousel(currentProject.images);
+      
+      // 显示弹窗
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.querySelector('div').classList.remove('scale-95');
+      modal.querySelector('div').classList.add('scale-100');
+      
+      // 开始轮播自动播放
+      startCarousel();
+      
+      // 阻止页面滚动
+      document.body.style.overflow = 'hidden';
+    }
+
+    // 关闭弹窗
+    function closeModalFunc() {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.querySelector('div').classList.remove('scale-100');
+      modal.querySelector('div').classList.add('scale-95');
+      
+      // 停止轮播自动播放
+      stopCarousel();
+      
+      // 恢复页面滚动
+      document.body.style.overflow = '';
+    }
+
+    closeModal.addEventListener('click', closeModalFunc);
+    
+    // 点击弹窗外部关闭弹窗
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModalFunc();
+      }
+    });
+    
+    // 按ESC键关闭弹窗
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+        closeModalFunc();
+      }
+    });
+
+    // 生成轮播
+    function generateCarousel(images) {
+      // 清空现有内容
+      carouselWrapper.innerHTML = '';
+      carouselIndicators.innerHTML = '';
+      currentSlide = 0;
+      
+      // 创建轮播项
+      images.forEach((img, index) => {
+        // 轮播图片
+        const slide = document.createElement('div');
+        slide.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+        slide.innerHTML = `<img src="${img}" alt="项目图片 ${index + 1}" class="w-full h-full object-cover">`;
+        carouselWrapper.appendChild(slide);
+        
+        // 轮播指示器
+        const indicator = document.createElement('button');
+        indicator.className = `w-3 h-3 rounded-full ${index === 0 ? 'bg-primary' : 'bg-gray-300'}`;
+        indicator.setAttribute('aria-label', `查看图片 ${index + 1}`);
+        indicator.addEventListener('click', () => goToSlide(index));
+        carouselIndicators.appendChild(indicator);
+      });
+    }
+
+    // 轮播控制
+    function goToSlide(index) {
+      const slides = document.querySelectorAll('.carousel-item');
+      const indicators = carouselIndicators.querySelectorAll('button');
+      
+      if (index >= slides.length) currentSlide = 0;
+      if (index < 0) currentSlide = slides.length - 1;
+      
+      // 更新轮播项
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentSlide);
+      });
+      
+      // 更新指示器
+      indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('bg-primary', i === currentSlide);
+        indicator.classList.toggle('bg-gray-300', i !== currentSlide);
+      });
+    }
+
+    // 下一张
+    function nextSlide() {
+      currentSlide++;
+      goToSlide(currentSlide);
+    }
+
+    // 上一张
+    function prevSlide() {
+      currentSlide--;
+      goToSlide(currentSlide);
+    }
+
+    // 开始轮播自动播放
+    function startCarousel() {
+      stopCarousel(); // 先停止任何现有轮播
+      carouselInterval = setInterval(nextSlide, 5000);
+    }
+
+    // 停止轮播自动播放
+    function stopCarousel() {
+      if (carouselInterval) {
+        clearInterval(carouselInterval);
+        carouselInterval = null;
+      }
+    }
+
+    // 轮播控制按钮事件
+    prevControl.addEventListener('click', function() {
+      stopCarousel();
+      prevSlide();
+      startCarousel();
+    });
+
+    nextControl.addEventListener('click', function() {
+      stopCarousel();
+      nextSlide();
+      startCarousel();
+    });
+
+    // 鼠标悬停时暂停轮播
+    carouselWrapper.addEventListener('mouseenter', stopCarousel);
+    carouselWrapper.addEventListener('mouseleave', startCarousel);
+  </script>
+</body>
+</html>
