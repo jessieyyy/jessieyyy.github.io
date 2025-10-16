@@ -77,6 +77,9 @@
         opacity: 1;
         position: relative;
       }
+      .img-cover{
+        object-fit: contain;
+      }
     }
   </style>
 </head>
@@ -86,10 +89,10 @@
   <header class="bg-dark text-white py-10 px-4 sm:px-6 lg:px-8">
     <div class="container mx-auto">
       <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center">
-        前端开发项目展示 <span class="text-primary">列表</span>
+        前端开发项目列表展示
       </h1>
       <p class="text-gray-300 text-center mt-3 max-w-2xl mx-auto">
-        鼠标移至卡片查看详情，点击卡片打开轮播展示
+        鼠标移至卡片查看详情，点击卡片打开轮播展示更多
       </p>
     </div>
   </header>
@@ -103,7 +106,7 @@
           <!-- 卡片正面 -->
           <div class="card-front bg-white flex flex-col h-full overflow-hidden">
             <div class="h-48 bg-primary/20">
-              <img src="https://picsum.photos/seed/project1/600/400" alt="项目图片"
+              <img src="assets/img/ivilogin.png" alt="项目图片"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
             <div class="p-5 flex-grow flex flex-col">
@@ -146,7 +149,7 @@
         <div class="card-flip h-full rounded-xl shadow-lg">
           <div class="card-front bg-white flex flex-col h-full overflow-hidden">
             <div class="h-48 bg-secondary/20">
-              <img src="https://picsum.photos/seed/project2/600/400" alt="项目图片"
+              <img src="assets/img/cimlogin.png" alt="项目图片"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
             <div class="p-5 flex-grow flex flex-col">
@@ -188,7 +191,7 @@
         <div class="card-flip h-full rounded-xl shadow-lg">
           <div class="card-front bg-white flex flex-col h-full overflow-hidden">
             <div class="h-48 bg-purple-100">
-              <img src="https://picsum.photos/seed/project3/600/400" alt="项目图片"
+              <img src="assets/img/tylogin.png" alt="项目图片"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
             <div class="p-5 flex-grow flex flex-col">
@@ -231,7 +234,7 @@
         <div class="card-flip h-full rounded-xl shadow-lg">
           <div class="card-front bg-white flex flex-col h-full overflow-hidden">
             <div class="h-48 bg-amber-100">
-              <img src="https://picsum.photos/seed/project4/600/400" alt="项目图片"
+              <img src="assets/img/qxylogin.png" alt="项目图片"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
             <div class="p-5 flex-grow flex flex-col">
@@ -274,7 +277,7 @@
         <div class="card-flip h-full rounded-xl shadow-lg">
           <div class="card-front bg-white flex flex-col h-full overflow-hidden">
             <div class="h-48 bg-red-100">
-              <img src="https://picsum.photos/seed/project5/600/400" alt="项目图片"
+              <img src="assets/img/fzlogin.png" alt="项目图片"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             </div>
             <div class="p-5 flex-grow flex flex-col">
@@ -312,7 +315,45 @@
           </div>
         </div>
       </div>
-
+      <div class="project-card group cursor-pointer card-container" style="height: 28rem;" data-id="6">
+        <div class="card-flip h-full rounded-xl shadow-lg">
+          <div class="card-front bg-white flex flex-col h-full overflow-hidden">
+            <div class="h-48 bg-red-100">
+              <img src="assets/img/qdlogin.png" alt="项目图片"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="p-5 flex-grow flex flex-col">
+              <h3 class="text-xl font-bold text-dark mb-2">青岛六号线大数据智慧监察系统</h3>
+              <p class="text-gray-600 text-sm flex-grow">青岛六号线大数据智慧监察系统是一个先进的大数据可视化平台，致力于提供全方位的地铁运营监管功能。该系统不仅展示了地铁线路的实时状态，还深入分析了服务质量、行车安全、设备性能以及能耗情况。</p>
+              <div class="mt-4 flex items-center text-red-600">
+                <span>点击查看</span>
+                <i class="fa fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-back bg-dark text-white flex flex-col p-5 h-full">
+            <h3 class="text-xl font-bold mb-3">青岛六号线大数据智慧监察系统</h3>
+            <div class="space-y-2 flex-grow">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-red-500 mr-2"></i>
+                <span>完成于 2023年6月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-users text-red-500 mr-2"></i>
+                <span>6人开发团队</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-code text-red-500 mr-2"></i>
+                <span>Vue.js,d3.js, Node.js, Java</span>
+              </div>
+            </div>
+            <div class="mt-4 text-red-500 flex items-center">
+              <span>点击查看轮播</span>
+              <i class="fa fa-image ml-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </main>
@@ -363,88 +404,60 @@
     const projects = [
       {
         id: 1,
-        title: "电子商务平台",
-        description: "一个功能完善的在线购物系统，支持多种支付方式和物流追踪。系统采用微服务架构，确保高可用性和可扩展性。包含用户管理、商品展示、购物车、订单处理、支付集成等核心功能。",
+        title: "车载一体机管理平台",
+        description: "一个功能完善的在p线购物系统，支持多种支付方式和物流追踪。系统采用微服务架构，确保高可用性和可扩展性。包含用户管理、商品展示、购物车、订单处理、支付集成等核心功能。",
         images: [
-          "https://picsum.photos/seed/project1/1200/800",
-          "https://picsum.photos/seed/project1a/1200/800",
-          "https://picsum.photos/seed/project1b/1200/800",
-          "https://picsum.photos/seed/project1c/1200/800"
+          "assets/img/ivilogin.png",
+          "assets/img/ivi.png",
         ]
       },
       {
         id: 2,
-        title: "数据分析仪表板",
+        title: "新一代智能一体机管理平台",
         description: "实时数据监控与分析平台，提供直观的数据可视化和预测功能。支持多维度数据筛选和自定义报表生成，帮助企业快速掌握业务动态和市场趋势，做出数据驱动的决策。",
         images: [
-          "https://picsum.photos/seed/project2/1200/800",
-          "https://picsum.photos/seed/project2a/1200/800",
-          "https://picsum.photos/seed/project2b/1200/800"
+          "assets/img/cimlogin.png",
+          "assets/img/cim.png",
         ]
       },
       {
         id: 3,
-        title: "社交媒体应用",
+        title: "智能云运维管控平台",
         description: "具有实时聊天、内容分享和用户互动功能的现代社交平台。支持图文、视频等多种内容形式，包含智能推荐算法和隐私保护机制，为用户提供安全、有趣的社交体验。",
         images: [
-          "https://picsum.photos/seed/project3/1200/800",
-          "https://picsum.photos/seed/project3a/1200/800",
-          "https://picsum.photos/seed/project3b/1200/800",
-          "https://picsum.photos/seed/project3c/1200/800"
+          "assets/img/tylogin.png",
+          "assets/img/ty.png",
         ]
       },
       {
         id: 4,
-        title: "智能管理系统",
+        title: "容器云",
         description: "企业资源规划与管理解决方案，提升运营效率与决策能力。集成了人力资源、财务管理、供应链管理等模块，通过自动化流程和数据分析，帮助企业降低成本、提高效率。",
         images: [
-          "https://picsum.photos/seed/project4/1200/800",
-          "https://picsum.photos/seed/project4a/1200/800",
-          "https://picsum.photos/seed/project4b/1200/800"
+          "assets/img/qxylogin.png",
+          "assets/img/qxy1.png",
+          "assets/img/qxy2.png"
         ]
       },
       {
         id: 5,
-        title: "健康追踪应用",
+        title: "福州四号线网络管理后台配置平台",
         description: "个人健康数据记录与分析工具，支持运动、饮食和睡眠监测。通过智能算法为用户提供个性化健康建议，集成可穿戴设备数据同步功能，帮助用户养成健康生活习惯。",
         images: [
-          "https://picsum.photos/seed/project5/1200/800",
-          "https://picsum.photos/seed/project5a/1200/800",
-          "https://picsum.photos/seed/project5b/1200/800"
+          "assets/img/fzlogin.png",
+          "assets/img/fz.png",
         ]
       },
       {
         id: 6,
-        title: "教育学习平台",
+        title: "青岛六号线大数据智慧监察系统",
         description: "在线课程与学习管理系统，支持视频教学和互动练习。包含课程管理、学习进度跟踪、在线考试等功能，采用自适应学习算法，为不同水平的学习者提供个性化学习路径。",
         images: [
-          "https://picsum.photos/seed/project6/1200/800",
-          "https://picsum.photos/seed/project6a/1200/800",
-          "https://picsum.photos/seed/project6b/1200/800",
-          "https://picsum.photos/seed/project6c/1200/800"
+          "assets/img/qdlogin.png",
+          "assets/img/qd.png",
         ]
       },
-      {
-        id: 7,
-        title: "旅行规划工具",
-        description: "智能行程规划与管理应用，整合机票、酒店和景点预订服务。基于用户偏好和预算推荐最佳旅行方案，提供实时天气和交通信息，让旅行计划变得简单高效。",
-        images: [
-          "https://picsum.photos/seed/project7/1200/800",
-          "https://picsum.photos/seed/project7a/1200/800",
-          "https://picsum.photos/seed/project7b/1200/800"
-        ]
-      },
-      {
-        id: 8,
-        title: "创意设计社区",
-        description: "设计师作品展示与交流平台，支持作品分享和在线协作。包含作品点赞、评论、收藏功能，提供设计资源下载和灵感推荐，连接全球创意人才，促进设计行业发展。",
-        images: [
-          "https://picsum.photos/seed/project8/1200/800",
-          "https://picsum.photos/seed/project8a/1200/800",
-          "https://picsum.photos/seed/project8b/1200/800",
-          "https://picsum.photos/seed/project8c/1200/800"
-        ]
-      }
+     
     ];
 
     // DOM元素
@@ -493,7 +506,7 @@
 
       // 更新弹窗内容
       modalTitle.textContent = currentProject.title;
-      modalDescription.textContent = currentProject.description;
+      // modalDescription.textContent = currentProject.description;
 
       // 生成轮播内容
       generateCarousel(currentProject.images);
@@ -551,7 +564,7 @@
         // 轮播图片
         const slide = document.createElement('div');
         slide.className = `carousel-item ${index === 0 ? 'active' : ''}`;
-        slide.innerHTML = `<img src="${img}" alt="项目图片 ${index + 1}" class="w-full h-full object-cover">`;
+        slide.innerHTML = `<img src="${img}" alt="项目图片 ${index + 1}" class="w-full h-full img-cover">`;
         carouselWrapper.appendChild(slide);
 
         // 轮播指示器
